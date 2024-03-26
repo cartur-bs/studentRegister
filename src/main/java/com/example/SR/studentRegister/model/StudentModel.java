@@ -14,6 +14,9 @@ public class StudentModel {
     private String course;
     private LocalDate birthDate;
 
+    public StudentModel() {
+    }
+
     public StudentModel(StudentDTO studentDTO) {
         this.name = studentDTO.name();
         this.course = studentDTO.course();
