@@ -25,6 +25,11 @@ public class StudentController {
         studentRegisterRepository.save(studentRegister);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-    
+
+    @GetMapping(path = "/postStudent")
+    public ResponseEntity getAllStudents(){
+        List<StudentModel> allStudents = studentRegisterRepository.findAll();
+        return ResponseEntity.ok(allStudents);
+    }
 
 }
