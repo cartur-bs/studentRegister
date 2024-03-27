@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class StudentController {
@@ -36,8 +37,13 @@ public class StudentController {
     }
 
     @GetMapping(path = "/student/{name}")
-    public List<StudentModel> getStudentByName(@PathVariable String name){
-        return studentService.findStudentByName(name);
+    public ResponseEntity<?> getStudentByName(@PathVariable String name) {
+        Optional<StudentModel> studentOptional = studentService.findStudentByName(name);
+        if (studentOptional.isPresent()) {
+            return ResponseEntity.ok(studentOptional.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student not found with name: " + name);
+        }
     }
 
 
