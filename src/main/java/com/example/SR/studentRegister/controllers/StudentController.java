@@ -23,6 +23,7 @@ public class StudentController {
     @Autowired
     StudentRegisterRepository studentRegisterRepository;
 
+    //verifies if there's a student with the studentCode trying to be sent and sends data to DB if false
     @PostMapping("/postStudent")
     public ResponseEntity<?> postStudent(@RequestBody StudentDTO studentDTO){
         boolean studentCodeAvailable = studentService.findStudentByCode(studentDTO.studentCode());
@@ -34,12 +35,14 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    //gets allStudents
     @GetMapping(path = "/getStudent")
     public ResponseEntity getAllStudents(){
         List<StudentModel> allStudents = studentRegisterRepository.findAll();
         return ResponseEntity.ok(allStudents);
     }
 
+    //gets studentByName
     @GetMapping(path = "/student/{name}")
     public ResponseEntity<?> getStudentByName(@PathVariable String name) {
         Optional<StudentModel> studentOptional = studentService.findStudentByName(name);

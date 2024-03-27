@@ -16,9 +16,11 @@ public class StudentModel {
     private String course;
     private LocalDate birthDate;
 
+    //required so it can get allStudents
     public StudentModel() {
     }
 
+    //converts DTO to a StudentModel object
     public StudentModel(StudentDTO studentDTO) {
         this.studentCode = studentDTO.studentCode();
         this.name = studentDTO.name();
