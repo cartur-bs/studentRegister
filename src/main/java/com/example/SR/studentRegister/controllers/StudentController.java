@@ -24,7 +24,11 @@ public class StudentController {
     StudentRegisterRepository studentRegisterRepository;
 
     @PostMapping("/postStudent")
-    public ResponseEntity<StudentModel> postStudent(@RequestBody StudentDTO studentDTO){
+    public ResponseEntity<?> postStudent(@RequestBody StudentDTO studentDTO){
+        boolean studentCodeAvailable = studentService.findStudentByCode(studentDTO.studentCode());
+        if(!studentCodeAvailable){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The student code tried is already in use");
+        }
         StudentModel studentRegister = new StudentModel(studentDTO);
         studentRegisterRepository.save(studentRegister);
         return ResponseEntity.status(HttpStatus.CREATED).build();

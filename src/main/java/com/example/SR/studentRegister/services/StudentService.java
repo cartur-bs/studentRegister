@@ -23,4 +23,12 @@ public class StudentService {
         }
         return Optional.of(student);
     }
+
+    public boolean findStudentByCode(int code){
+        StudentModel studentModel = studentRegisterRepository.findByStudentCode(code);
+        if(studentModel != null){
+            return false;
+        }
+        return true;
+    }
 }

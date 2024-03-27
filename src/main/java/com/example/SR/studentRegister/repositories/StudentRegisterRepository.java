@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface StudentRegisterRepository extends JpaRepository<StudentModel, String> {
 
     StudentModel findByName(String name);
+
+    StudentModel findByStudentCode(int studentCode);
 }
