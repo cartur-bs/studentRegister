@@ -6,10 +6,12 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "TB_STUDENT")
 public class StudentModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer studentId;
+    private int studentCode;
     private String name;
     private String course;
     private LocalDate birthDate;
@@ -18,6 +20,7 @@ public class StudentModel {
     }
 
     public StudentModel(StudentDTO studentDTO) {
+        this.studentCode = studentDTO.studentCode();
         this.name = studentDTO.name();
         this.course = studentDTO.course();
         this.birthDate= studentDTO.birthDate();
