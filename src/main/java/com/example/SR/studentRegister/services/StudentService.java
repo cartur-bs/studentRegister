@@ -19,7 +19,7 @@ public class StudentService {
     public Optional<StudentModel> findStudentByName(String name) {
         StudentModel student = studentRegisterRepository.findByName(name);
         if (student == null) {
-            throw new EntityNotFoundException("Estudante com o nome '" + name + "' não encontrado.");
+            return Optional.empty();
         }
         return Optional.of(student);
     }

@@ -45,6 +45,4 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student not found with name: " + name);
         }
     }
-
-
 }
