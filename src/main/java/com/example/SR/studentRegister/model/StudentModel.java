@@ -28,18 +28,37 @@ public class StudentModel {
         this.birthDate= studentDTO.birthDate();
     }
 
+    public int getStudentCode() {
+        return studentCode;
+    }
+
+    public void setStudentCode(int studentCode) {
+        this.studentCode = studentCode;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCourse() {
         return course;
     }
 
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
     public LocalDate getBirthDate() {
         return birthDate;
     }
 
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
 
     @Override
     public String toString() {

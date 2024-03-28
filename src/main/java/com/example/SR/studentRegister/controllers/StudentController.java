@@ -7,6 +7,7 @@ import com.example.SR.studentRegister.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,6 +51,22 @@ public class StudentController {
             return ResponseEntity.ok(studentOptional.get());
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student not found with name: " + name);
+        }
+    }
+
+    @PatchMapping
+    @Transactional
+    public ResponseEntity<?> editStudent(@RequestBody StudentDTO studentDTO){
+        Optional<StudentModel> studentModelOptional = Optional.ofNullable(studentRegisterRepository.findByStudentCode(studentDTO.studentCode()));
+        if(studentModelOptional.isPresent()){
+            StudentModel studentModel = studentModelOptional.get();
+            studentModel.setStudentCode(studentDTO.studentCode());
+            studentModel.setName(studentDTO.name());
+            studentModel.setCourse(studentDTO.course());
+            studentModel.setBirthDate(studentDTO.birthDate());
+            return ResponseEntity.ok(studentModel);
+        }else{
+            return ResponseEntity.notFound().build();
         }
     }
 }
