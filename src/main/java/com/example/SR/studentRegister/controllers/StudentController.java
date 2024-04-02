@@ -54,6 +54,16 @@ public class StudentController {
         }
     }
 
+    @GetMapping(path = "/student-code/{studentCode}")
+    public ResponseEntity<?> getStudentByStudentCode(@PathVariable int studentCode){
+        Optional<StudentModel> studentModel = studentService.getStudentByCode(studentCode);
+        if(studentModel.isPresent()){
+            return ResponseEntity.ok(studentModel.get());
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student not found with student code:" + studentCode);
+        }
+    }
+
     @PatchMapping
     @Transactional
     public ResponseEntity<?> editStudent(@RequestBody StudentDTO studentDTO){

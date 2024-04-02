@@ -33,4 +33,12 @@ public class StudentService {
         }
         return true;
     }
+
+    public Optional<StudentModel> getStudentByCode(int studentCode){
+        StudentModel studentModelOptional = studentRegisterRepository.findByStudentCode(studentCode);
+        if(studentModelOptional == null){
+            return Optional.empty();
+        }
+        return Optional.of(studentModelOptional);
+    }
 }
