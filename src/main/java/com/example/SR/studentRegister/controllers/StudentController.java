@@ -26,13 +26,14 @@ public class StudentController {
 
     //verifies if there's a student with the studentCode trying to be sent and sends data to DB if false
     @PostMapping("/postStudent")
-    public ResponseEntity<?> postStudent(@RequestBody StudentDTO studentDTO){
+    public ResponseEntity<?> postStudent( StudentDTO studentDTO){
         boolean studentCodeAvailable = studentService.findStudentByCode(studentDTO.studentCode());
         if(!studentCodeAvailable){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("The student code tried is already in use");
         }
         StudentModel studentRegister = new StudentModel(studentDTO);
         studentRegisterRepository.save(studentRegister);
+        System.out.println(studentRegister);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

@@ -82,5 +82,34 @@
         <button type="submit">Post</button>
     </form>
 </div>
+
+<script>
+    function submitForm() {
+        var formData = {
+            studentCode: document.getElementById("studentCode").value,
+            name: document.getElementById("name").value,
+            course: document.getElementById("course").value,
+            birthDate: document.getElementById("birthDate").value
+        };
+
+        fetch("/postStudent", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Student registered successfully");
+            } else {
+                alert("Failed to register student");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    }
+</script>
 </body>
 </html>
