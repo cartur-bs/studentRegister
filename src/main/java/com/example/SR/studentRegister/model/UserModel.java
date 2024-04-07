@@ -1,11 +1,10 @@
 package com.example.SR.studentRegister.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.SR.studentRegister.DTOs.UserDTO;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name="TB_USER")
 public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,9 +12,12 @@ public class UserModel {
     private String userName;
     private String password;
 
-    public UserModel(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
+    public UserModel(UserDTO userDTO) {
+        this.userName = userDTO.userName();
+        this.password = userDTO.password();
+    }
+
+    public UserModel() {
     }
 
     public String getUserName() {
@@ -32,5 +34,13 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "UserModel{" +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

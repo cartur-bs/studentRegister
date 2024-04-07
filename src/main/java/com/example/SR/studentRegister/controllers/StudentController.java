@@ -33,7 +33,6 @@ public class StudentController {
         }
         StudentModel studentRegister = new StudentModel(studentDTO);
         studentRegisterRepository.save(studentRegister);
-        System.out.println(studentRegister);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
