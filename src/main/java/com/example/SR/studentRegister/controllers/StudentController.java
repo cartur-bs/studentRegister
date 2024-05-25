@@ -80,4 +80,8 @@ public class StudentController {
         }
     }
 }
+<<<<<<< HEAD
 //testing again
+=======
+//testing rebase crash
+>>>>>>> 29265c8 (testing rebase crash)
