@@ -7,4 +7,3 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, Integer> {
 }
-//connects directly with DB without having to query
