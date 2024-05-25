@@ -36,7 +36,7 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    //gets allStudents
+    //gets allStudents from DB
     @GetMapping(path = "/getStudent")
     public ResponseEntity getAllStudents(){
         List<StudentModel> allStudents = studentRegisterRepository.findAll();
